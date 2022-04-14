@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block right-panel-content %}
+    <h3 id="h0" class="text-center">{{ title }}</h3>
+    {% if  not owned_cards %}
+        <h3 id="h1" class="text-center">对不起没有卡片</h3>
+    {% endif %}
+
+    {% for card in owned_cards %}
+
+        <div class="container-fluid">
+            <div class="row clearfix">
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_down }}" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
+                <div class="col-md-2 column">
+                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px
+                         height=140px/>
+                </div>
+                <div class="col-md-7 column">
+                    <h3>
+                        <a rel="nofollow" href="{% url 'card' card.id %}">  {{ card.release_year }} {{ card.release_name }} {{ card.card_set }}</a>
+                    </h3>
+                    <p>{{ card.release_year | slice:":100" }}......</p>
+                    <p>
+                        <strong>
+                            <span style="margin-right: 2px">系列: </span>
+                            {{ card.release_name  }}
+                        </strong>
+                        <strong>
+                            <span style="margin-right: 2px">具体类型: </span>
+                            {{ card.card_set  }}
+                        </strong><strong>
+                            <span style="margin-right: 2px">球员: </span>
+                            {{ card.card_player  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">球队: </span>
+                            {{ card.card_team  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">限量: </span>
+                            {{ card.card_seq  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">是否拥有: </span>
+                            {{ card.has_owned }}
+                        </strong>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="pagination">
+        <ul class="pagination">
+            {% if owned_cards.has_previous %}
+                <li><a href="?page={{ articles.previous_page_number }}">上一页</a>
+                </li>
+            {% endif %}
+
+            {% for p_num in page_range %}
+                {% if 0 < p_num and p_num < max_page %}
+                    {% if owned_cards.number == p_num %}
+                        <li class="active">
+                        <a href="#">
+                        {{ owned_cards.number }}
+                        <span class="sr-only">{{ owned_cards.number }}
+                        </span>
+                        </a>
+                        </li>
+                    {% else %}
+                        <li >
+                        <a href="?page={{ p_num }}">
+                            {{ p_num }}
+                        </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            {% if owned_cards.has_next %}
+                <li><a href="?page={{ owned_cards.next_page_number }}">下一页</a></li>
+            {% endif %}
+            <li class="item"><a rel="nofollow" href="#">
+                    {{ owned_cards.number }}/{{ owned_cards.paginator.num_pages }}</a>
+            </li>
+        </ul>
+        </div>
+{% endblock %}

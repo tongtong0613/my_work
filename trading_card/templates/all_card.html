@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block right-panel-content %}
+    <h3 id="h0" class="text-center">{{ title }}</h3>
+    {% if  not all_cards %}
+        <h3 id="h1" class="text-center">对不起没有卡片</h3>
+    {% endif %}
+
+    {% for card in all_cards %}
+
+        <div class="container-fluid">
+            <div class="row clearfix">
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_down }}" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
+                <div class="col-md-2 column">
+                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px
+                         height=140px/>
+                </div>
+                <div class="col-md-7 column">
+                    <h3>
+                        <a rel="nofollow" href="{% url 'card' card.id %}">  {{ card.release_year }} {{ card.release_name }} - {{ card.card_set }}</a>
+                    </h3>
+                    <p>{{ card.release_year | slice:":100" }}......</p>
+                    <p>
+                        <strong>
+                            <span style="margin-right: 2px">系列: </span>
+                            {{ card.release_name  }}
+                        </strong>
+                        <strong>
+                            <span style="margin-right: 2px">具体类型: </span>
+                            {{ card.card_set  }}
+                        </strong><strong>
+                            <span style="margin-right: 2px">球员: </span>
+                            {{ card.card_player  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">球队: </span>
+                            {{ card.card_team  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">限量: </span>
+                            {{ card.card_seq  }}
+                        </strong>
+                        </strong><strong>
+                            <span style="margin-right: 2px">是否拥有: </span>
+                            {{ card.has_owned }}
+                        </strong>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+<!--    <div class="container-fluid">-->
+<!--        <ul class="pagination" id="pager">-->
+<!--            {#上一页按钮开始#}-->
+<!--            {# 如果当前页有上一页#}-->
+<!--            {% if all_cards.has_previous %}-->
+<!--                {#  当前页的上一页按钮正常使用#}-->
+<!--                <li class="previous"><a rel="nofollow" href="{{ path }}?page={{ all_cards.previous_page_number }}">上一页</a></li>-->
+<!--            {% else %}-->
+<!--                {# 当前页的不存在上一页时,上一页的按钮不可用#}-->
+<!--                <li class="previous disabled"><a rel="nofollow" href="#">上一页</a></li>-->
+<!--            {% endif %}-->
+<!--            {#上一页按钮结束#}-->
+<!--            {# 页码开始#}-->
+<!--            <li class="item active"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number }}">{{ all_cards.number }}</a></li>-->
+<!--                        <li class="item"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number|add:1 }}">{{ all_cards.number|add:1 }}</a></li>-->
+<!--                        <li class="item"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number|add:2 }}">{{ all_cards.number|add:2 }}</a></li>-->
+<!--            {#页码结束#}-->
+<!--            {# 下一页按钮开始#}-->
+<!--            {% if all_cards.has_next %}-->
+<!--                <li class="next"><a rel="nofollow" href="{{ path }}?page={{ all_cards.next_page_number }}">下一页</a></li>-->
+<!--            {% else %}-->
+<!--                <li class="next disabled"><a rel="nofollow" href="#">下一页</a></li>-->
+<!--            {% endif %}-->
+<!--            <li class="item"><a rel="nofollow" href="#">-->
+<!--                    {{ all_cards.number }}/{{ all_cards.paginator.num_pages }}</a>-->
+<!--            </li>-->
+
+<!--        </ul>-->
+<!--    </div>-->
+        <div class="pagination">
+        <ul class="pagination">
+            {% if all_cards.has_previous %}
+                <li><a href="?page={{ articles.previous_page_number }}">上一页</a>
+                </li>
+            {% endif %}
+
+            {% for p_num in page_range %}
+                {% if 0 < p_num and p_num < max_page %}
+                    {% if all_cards.number == p_num %}
+                        <li class="active">
+                        <a href="#">
+                        {{ all_cards.number }}
+                        <span class="sr-only">{{ all_cards.number }}
+                        </span>
+                        </a>
+                        </li>
+                    {% else %}
+                        <li >
+                        <a href="?page={{ p_num }}">
+                            {{ p_num }}
+                        </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            {% if all_cards.has_next %}
+                <li><a href="?page={{ all_cards.next_page_number }}">下一页</a></li>
+            {% endif %}
+            <li class="item"><a rel="nofollow" href="#">
+                    {{ all_cards.number }}/{{ all_cards.paginator.num_pages }}</a>
+            </li>
+        </ul>
+        </div>
+{% endblock %}
