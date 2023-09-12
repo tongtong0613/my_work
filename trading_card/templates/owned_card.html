@@ -5,22 +5,59 @@
         <h3 id="h1" class="text-center">对不起没有卡片</h3>
     {% endif %}
 
+    <div >
+        <form method="get" action="{% url 'filter_owned' %}">
+            {% csrf_token %}
+            <label>年份</label>
+            <select class="select_lable" name="svalue_1">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in year %}
+                    <option value="{{ r.release_year }}">{{ r.release_year }}</option>
+                {%endfor%}
+            </select>
+
+            <label>系列</label>
+            <select class="select_lable" name="svalue_2">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in name %}
+                    <option value="{{ r.release_name }}">{{ r.release_name }}</option>
+                {%endfor%}
+            </select>
+
+            <label>球队</label>
+            <select class="select_lable" name="svalue_3">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in team %}
+                    <option value="{{ r.card_team }}">{{ r.card_team }}</option>
+                {%endfor%}
+            </select>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+
     {% for card in owned_cards %}
 
         <div class="container-fluid">
             <div class="row clearfix">
-<!--                <div class="col-md-2 column">-->
-<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px-->
-<!--                         height=140px/>-->
-<!--                </div>-->
+                {% if not card.pic_up %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/lbj.jpg" width=140px
+                             height=140px/>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px
+                             height=140px/>
+                    </div>
+                {% endif %}
 <!--                <div class="col-md-2 column">-->
 <!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_down }}" width=140px-->
 <!--                         height=140px/>-->
 <!--                </div>-->
-                <div class="col-md-2 column">
-                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px
-                         height=140px/>
-                </div>
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
                 <div class="col-md-7 column">
                     <h3>
                         <a rel="nofollow" href="{% url 'card' card.id %}">  {{ card.release_year }} {{ card.release_name }} {{ card.card_set }}</a>

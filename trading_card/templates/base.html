@@ -16,6 +16,7 @@
     <!-- Custom styles for this templates -->
     <link href="/static/css/dashboard.css" rel="stylesheet">
     <link href="/static/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/info.css"/>
     {% block extrastyle %}
     {% endblock %}
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -70,11 +71,11 @@
                 <li class="active"><a rel="nofollow" href="{% url 'all_card' %}">全部卡片<span class="sr-only">(current)</span></a></li>
                 <li><a rel="nofollow" href="{% url 'owned_card' %}">已拥有</a></li>
                 <li><a rel="nofollow" href="{% url 'no_owned_card' %}">未拥有</a></li>
-                <li><a rel="nofollow" href="{% url 'index' %}">年份分类</a></li>
-                <li><a rel="nofollow" href="{% url 'index' %}">系列分类</a></li>
-                <li><a rel="nofollow" href="{% url 'index' %}">购买卡片</a></li>
-                <li><a rel="nofollow" href="{% url 'index' %}">购物车</a></li>
-                <li><a rel="nofollow" href="{% url 'index' %}">个人中心</a></li>
+                <li><a rel="nofollow" href="{% url 'other_owned' %}">其他拥有</a></li>
+<!--                <li><a rel="nofollow" href="{% url 'index' %}">系列分类</a></li>-->
+<!--                <li><a rel="nofollow" href="{% url 'index' %}">购买卡片</a></li>-->
+<!--                <li><a rel="nofollow" href="{% url 'index' %}">购物车</a></li>-->
+<!--                <li><a rel="nofollow" href="{% url 'index' %}">个人中心</a></li>-->
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-right:0;padding-right:0;">
@@ -85,22 +86,22 @@
 </div>
 
 
-<!--<script src="/static/js/jquery-2.1.1.min.js"></script>-->
-<!--<script src="/static/js/jquery.init.js"></script>-->
-<!--<script src="/static/js/bootstrap.min.js"></script>-->
-<!--<script src="/static/js/ie10-viewport-bug-workaround.js"></script>-->
-<!--<script src="/static/js/custom.js"></script>-->
-<!--<script src="/static/js/plugins/highstock/js/highstock.js"></script>-->
-<!--<script src="/static/js/plugins/highstock/js/modules/exporting.js"></script>-->
+<script src="/static/js/jquery-2.1.1.min.js"></script>
+<script src="/static/js/jquery.init.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/static/js/custom.js"></script>
+<script src="/static/js/plugins/highstock/js/highstock.js"></script>
+<script src="/static/js/plugins/highstock/js/modules/exporting.js"></script>
 <script type="text/javascript">
-    // window.__user_media_prefix__ = "/media/";
-    // window.__user_path_prefix__ = "";
-    // window.__user_language_code__ = "";
+    window.__user_media_prefix__ = "/media/";
+    window.__user_path_prefix__ = "";
+    window.__user_language_code__ = "";
     $(function ($) {
         {#    导航栏按钮渲染#}
         $(".sidebar").find("li").each(function () {
             var a = $(this).find("a:first")[0];
-            if ($(a).attr("href") === location.pathname) {
+            if ($(a).attr("href") === '/' + location.pathname.split('/')[1] + '/') {
                 $(this).addClass("active");
             } else {
                 $(this).removeClass("active");

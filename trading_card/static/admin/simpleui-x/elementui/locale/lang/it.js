@@ -23,7 +23,7 @@ exports.default = {
       nextYear: 'Anno successivo',
       prevMonth: 'Mese precedente',
       nextMonth: 'Mese successivo',
-      year: '',
+      year: 'anno',
       month1: 'Gennaio',
       month2: 'Febbraio',
       month3: 'Marzo',
@@ -70,17 +70,18 @@ exports.default = {
     cascader: {
       noMatch: 'Nessuna corrispondenza',
       loading: 'Caricamento',
-      placeholder: 'Seleziona'
+      placeholder: 'Seleziona',
+      noData: 'Nessun dato'
     },
     pagination: {
       goto: 'Vai a',
-      pagesize: '/page',
+      pagesize: '/pagina',
       total: 'Totale {total}',
       pageClassifier: ''
     },
     messagebox: {
       confirm: 'OK',
-      cancel: 'Cancella',
+      cancel: 'Annulla',
       error: 'Input non valido'
     },
     upload: {
@@ -108,7 +109,17 @@ exports.default = {
       hasCheckedFormat: '{checked}/{total} selezionati'
     },
     image: {
-      error: 'FAILED' // to be translated
+      error: 'ERRORE'
+    },
+    pageHeader: {
+      title: 'Indietro'
+    },
+    popconfirm: {
+      confirmButtonText: 'Sì',
+      cancelButtonText: 'No'
+    },
+    empty: {
+      description: 'Nessun dato'
     }
   }
 };

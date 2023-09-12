@@ -21,7 +21,7 @@ from django.views.static import serve
 from django.conf import settings
 
 urlpatterns = [
-    path('xadmin/', xadmin.site.urls),
+    path('admin/', admin.site.urls),
     path("", include("card.urls")),
     # favicon.cio
     re_path(r'^favicon\.ico$', RedirectView.as_view(url=r'media/favicon.ico')),

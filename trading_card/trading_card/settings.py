@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'card',
     'xadmin',
     'crispy_forms',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +149,130 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_USER_ICON = os.path.join(BASE_DIR, 'media/user_icon')
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+# 在导入数据时使用数据库事务，默认False
+
+SIMPLEUI_HOME_INFO = False
+
+SIMPLEUI_CONFIG = {
+    # 是否使用系统默认菜单，自定义菜单时建议关闭。
+    'system_keep': False,
+
+    # 用于菜单排序和过滤, 不填此字段为默认排序和全部显示。空列表[] 为全部不显示.
+    'menu_display': ['卡片Checklist', '权限认证'],
+
+    # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时刷新展示菜单内容。
+    # 一般建议关闭。
+    'dynamic': False,
+    'menus': [
+        {
+            'app': 'auth',
+            'name': '权限认证',
+            'icon': 'fas fa-user-shield',
+            'models': [
+                {
+                    'name': '用户列表',
+                    'icon': 'fa fa-user',
+                    'url': 'auth/user/'
+                },
+                {
+                    'name': '用户组',
+                    'icon': 'fa fa-th-list',
+                    'url': 'auth/group/'
+                }
+            ]
+        },
+
+        {
+            'name': '卡片Checklist',
+            'icon': 'fab fa-blogger',
+            'models': [
+                {
+                    'name': '2022-2023赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2022_2023/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2021-2022赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2021_2022/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2020-2021赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2020_2021/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2019-2020赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2019_2020/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2018-2019赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2018_2019/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2017-2018赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2017_2018/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2016-2017赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2016_2017/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2015-2016赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2015_2016/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2014-2015赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2014_2015/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2013-2014赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2013_2014/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2012-2013赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2012_2013/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2011-2012赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2011_2012/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2010-2011赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2010_2011/',
+                    'icon': 'fas fa-book'
+                },
+                {
+                    'name': '2009-2010赛季',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/card/card_2009_2010/',
+                    'icon': 'fas fa-book'
+                },
+            ]
+        },
+    ]
+}

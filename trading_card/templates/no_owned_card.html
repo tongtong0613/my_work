@@ -9,18 +9,25 @@
 
         <div class="container-fluid">
             <div class="row clearfix">
-<!--                <div class="col-md-2 column">-->
-<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px-->
-<!--                         height=140px/>-->
-<!--                </div>-->
+                {% if not card.pic_up %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/lbj.jpg" width=140px
+                             height=140px/>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px
+                             height=140px/>
+                    </div>
+                {% endif %}
 <!--                <div class="col-md-2 column">-->
 <!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_down }}" width=140px-->
 <!--                         height=140px/>-->
 <!--                </div>-->
-                <div class="col-md-2 column">
-                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px
-                         height=140px/>
-                </div>
+<!--                <div class="col-md-2 column">-->
+<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px-->
+<!--                         height=140px/>-->
+<!--                </div>-->
                 <div class="col-md-7 column">
                     <h3>
                         <a rel="nofollow" href="{% url 'card' card.id %}">  {{ card.release_year }} {{ card.release_name }} {{ card.card_set }}</a>

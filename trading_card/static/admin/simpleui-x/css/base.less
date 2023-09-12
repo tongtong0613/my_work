@@ -1,10 +1,33 @@
+#changelist {
+  display: block !important;
+}
+
+.change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull {
+  margin-right: 0px !important;
+}
+
+.submit-row {
+  background: inherit !important;
+  border: none !important;
+}
+
+#content {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
 .simpleui-form-item {
   display: inline-block;
   width: auto;
+  margin-right: 10px;
 }
 
 #changelist #toolbar form input {
-  /*padding-left: 30px!important;*/
+  padding-left: 30px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .el-link-btn {
@@ -57,6 +80,9 @@ a:link, a:visited {
 
 .object-tools {
   margin-top: 0px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
 .vTextField {
@@ -119,9 +145,11 @@ tbody tr:hover td, tbody tr:hover th {
   }
 }
 
+@bg-color: #f1f1f1;
+
 body,
 #container {
-  background-color: #f1f1f1;
+  background-color: @bg-color !important;
 
   #content {
 
@@ -158,22 +186,26 @@ body,
   }
 
   .object-tools {
-    top: 6px!important;
+    top: 6px !important;
     margin: 0px;
   }
-  .el-pagination__total{
-    display: block!important;
+
+  .el-pagination__total {
+    display: block !important;
   }
-  .el-pagination__jump{
-    display: block!important;
+
+  .el-pagination__jump {
+    display: block !important;
     margin: 0px;
     margin-top: 10px;
   }
-  .el-pager{
+
+  .el-pager {
     margin: 0px;
     padding: 0px;
   }
-  .el-dialog{
+
+  .el-dialog {
     width: 90%;
   }
 
@@ -190,5 +222,58 @@ body,
 
   #content {
     padding: 0px !important;
+  }
+}
+
+#changelist .actions {
+  margin-right: auto;
+  position: relative;
+
+  .btn-group {
+    position: absolute;
+    right: 0px;
+  }
+}
+
+.inline-group .tabular td.original p {
+  margin-top: -42px !important;
+}
+
+:root {
+  --error-fg: red!important;
+}
+
+/*django新特性 主题适配*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: inherit;
+    --primary-fg: inherit;
+
+    --body-fg: inherit;
+    --body-bg: inherit;
+    --body-quiet-color: inherit;
+    --body-loud-color: inherit;
+
+    --breadcrumbs-link-fg: inherit;
+    --breadcrumbs-bg: inherit;
+
+    --link-fg: inherit;
+    --link-hover-color: inherit;
+    --link-selected-fg: #FFF;
+
+    --hairline-color: inherit;
+    --border-color: #ccc;
+
+    --error-fg: inherit;
+    --message-success-bg: inherit;
+    --message-warning-bg: inherit;
+    --message-error-bg: inherit;
+
+    --darkened-bg: inherit;
+    --selected-bg: inherit;
+    --selected-row: inherit;
+
+    --close-button-bg: inherit;
+    --close-button-hover-bg: inherit;
   }
 }

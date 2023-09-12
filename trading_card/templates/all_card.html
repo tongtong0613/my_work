@@ -4,23 +4,67 @@
     {% if  not all_cards %}
         <h3 id="h1" class="text-center">对不起没有卡片</h3>
     {% endif %}
+    <div >
+        <form method="get" action="{% url 'filter' %}">
+            {% csrf_token %}
+            <label>年份</label>
+            <select class="select_lable" name="svalue_1">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in year %}
+                    <option value="{{ r.release_year }}">{{ r.release_year }}</option>
+                {%endfor%}
+            </select>
 
+            <label>系列</label>
+            <select class="select_lable" name="svalue_2">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in name %}
+                    <option value="{{ r.release_name }}">{{ r.release_name }}</option>
+                {%endfor%}
+            </select>
+
+            <label>球队</label>
+            <select class="select_lable" name="svalue_3">
+                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                {% for r in team %}
+                    <option value="{{ r.card_team }}">{{ r.card_team }}</option>
+                {%endfor%}
+            </select>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+
+    {% if conditions_zh %}
+        <form>
+            <div id="conditions">
+                <h1 > 查询条件为： </h1>
+                {% for k,v in conditions_zh.items %}
+                    <div class="condition_form">
+                        <div class="item">
+                            <h1 style="display:inline;">{{ k }}:</h1>
+                            <p style="display:inline;">{{ v }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <h1 > 查询结果为： </h1>
+            </div>
+        </form>
+    {% endif %}
     {% for card in all_cards %}
 
         <div class="container-fluid">
             <div class="row clearfix">
-<!--                <div class="col-md-2 column">-->
-<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px-->
-<!--                         height=140px/>-->
-<!--                </div>-->
-<!--                <div class="col-md-2 column">-->
-<!--                    <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_down }}" width=140px-->
-<!--                         height=140px/>-->
-<!--                </div>-->
-                <div class="col-md-2 column">
-                    <img class="img-thumbnail card-image" alt="140x140" src="/static/books.png" width=140px
-                         height=140px/>
-                </div>
+                {% if not card.pic_up %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/lbj.jpg" width=140px
+                             height=140px/>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 column">
+                        <img class="img-thumbnail card-image" alt="140x140" src="/media/{{ card.pic_up }}" width=140px
+                             height=140px/>
+                    </div>
+                {% endif %}
                 <div class="col-md-7 column">
                     <h3>
                         <a rel="nofollow" href="{% url 'card' card.id %}">  {{ card.release_year }} {{ card.release_name }} - {{ card.card_set }}</a>
@@ -56,35 +100,6 @@
             </div>
         </div>
     {% endfor %}
-<!--    <div class="container-fluid">-->
-<!--        <ul class="pagination" id="pager">-->
-<!--            {#上一页按钮开始#}-->
-<!--            {# 如果当前页有上一页#}-->
-<!--            {% if all_cards.has_previous %}-->
-<!--                {#  当前页的上一页按钮正常使用#}-->
-<!--                <li class="previous"><a rel="nofollow" href="{{ path }}?page={{ all_cards.previous_page_number }}">上一页</a></li>-->
-<!--            {% else %}-->
-<!--                {# 当前页的不存在上一页时,上一页的按钮不可用#}-->
-<!--                <li class="previous disabled"><a rel="nofollow" href="#">上一页</a></li>-->
-<!--            {% endif %}-->
-<!--            {#上一页按钮结束#}-->
-<!--            {# 页码开始#}-->
-<!--            <li class="item active"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number }}">{{ all_cards.number }}</a></li>-->
-<!--                        <li class="item"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number|add:1 }}">{{ all_cards.number|add:1 }}</a></li>-->
-<!--                        <li class="item"><a rel="nofollow" href="{{ path }}?page={{ all_cards.number|add:2 }}">{{ all_cards.number|add:2 }}</a></li>-->
-<!--            {#页码结束#}-->
-<!--            {# 下一页按钮开始#}-->
-<!--            {% if all_cards.has_next %}-->
-<!--                <li class="next"><a rel="nofollow" href="{{ path }}?page={{ all_cards.next_page_number }}">下一页</a></li>-->
-<!--            {% else %}-->
-<!--                <li class="next disabled"><a rel="nofollow" href="#">下一页</a></li>-->
-<!--            {% endif %}-->
-<!--            <li class="item"><a rel="nofollow" href="#">-->
-<!--                    {{ all_cards.number }}/{{ all_cards.paginator.num_pages }}</a>-->
-<!--            </li>-->
-
-<!--        </ul>-->
-<!--    </div>-->
         <div class="pagination">
         <ul class="pagination">
             {% if all_cards.has_previous %}

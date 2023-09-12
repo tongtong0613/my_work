@@ -154,6 +154,19 @@ a:visited {
 .quick-card a:hover {
   color: rgba(215, 109, 63, 0.8) !important;
 }
+.module h2,
+.module caption,
+.inline-group h2,
+.selector-chosen h2 {
+  background: #FFF !important;
+  color: #666 !important;
+}
+#changelist .actions {
+  min-height: 38px;
+}
+.colM {
+  overflow: auto;
+}
 .menu .el-menu-item {
   color: #484848 !important;
 }
@@ -167,10 +180,10 @@ a:visited {
 .logo-wrap {
   color: #FFF;
   background-image: linear-gradient(to right bottom, #e8962e, #df6838) !important;
-  background-color: transparent!important;
+  background-color: transparent !important;
 }
 .navbar {
-  background-color: transparent!important;
+  background-color: transparent !important;
   background-image: linear-gradient(to right bottom, #da8342, #e45131) !important;
 }
 /*# sourceMappingURL=orange.css.map */
